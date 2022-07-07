@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# BugButton
+## a little red Button to report Bugs
+## for Testers: create Github Issues without leaving the site you are testing
+## for Developers: receive all relevant data to find and fix bugs directly into your Github Issues
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BugButton is a React Component, simply at the root level of your React App.
+BugButton creates Issues with two button presses, using the Github API.
+You, as a developer, decide what important data you need in your issues. (e.g. parts of your Redux Store, React Router History).
+Because of the condition Prop, BugButton only shows up when you want it to. (e.g. only on your QA Deployment, or only for certain userNames after a login)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Properties:
 
-### `npm start`
+![](codeExample.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### condition: boolean
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+any boolean condition (controls if the button is rendered)
 
-### `npm test`
+### authToken: string 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+github authToken of a user that has permissions to create issues on your repo (keep this safe and secret, obviously)
 
-### `npm run build`
+### url: string
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+the url to your github repo (e.g https://api.github.com/repos/chriskuhtz/pokemonModules/issues)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### position: "right"|"top"|"bottom"|"left"
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+the edge of your screen on which the Button will be located
 
-### `npm run eject`
+### categories(optional): string[]
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+your own categories to classify your issues (e.g UI,API,Routing)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### data(optional): {key:string, value:string}[]
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+any data you need in your issue report to better understand the issue (e.g State,Redux Store, Session Storage, API Responses)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+simply JSON stringify it
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## What BugButton Reports look like:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Unexecuted Logs and archived Logs are slices of the applications Redux store, passed in as data elements. (see the code example above)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![](reportExample.png)
 
-### Analyzing the Bundle Size
+## What BugButton looks like:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![](buttonExample.png)
 
-### Making a Progressive Web App
+![](bugButtonScreen.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
