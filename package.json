@@ -1,6 +1,6 @@
 {
   "name": "bugbutton",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "private": false,
   "files": [
     "lib"
@@ -17,8 +17,8 @@
     "react-dom": ">= 16.8.0"
   },
   "dependencies": {
-    "react": "^16",
-    "react-dom": "^16"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "11.13.0",

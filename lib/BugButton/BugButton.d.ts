@@ -1,10 +1,9 @@
 /// <reference types="react" />
-import "./bugButton.css";
 interface DataPoint {
     key: string;
     value: string;
 }
-declare const BugButton: ({ condition, categories, position, url, authToken, data, }: {
+export declare const BugButton: ({ condition, categories, position, url, authToken, data, }: {
     condition: boolean;
     url: string;
     authToken: string;
@@ -12,5 +11,5 @@ declare const BugButton: ({ condition, categories, position, url, authToken, dat
     data?: DataPoint[] | undefined;
     categories?: string[] | undefined;
 }) => JSX.Element;
-export default BugButton;
+export {};
 //# sourceMappingURL=BugButton.d.ts.map

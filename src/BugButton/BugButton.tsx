@@ -1,13 +1,25 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./bugButton.css";
+import {
+  bugButton,
+  bugModal,
+  categoryButton,
+  closeButton,
+  closeButtonBox,
+  displayNone,
+  reportButton,
+  reportButtonDisabled,
+  selectedCategoryButton,
+  stack,
+  stackElement,
+} from "./bugButtonCSS";
 
 interface DataPoint {
   key: string;
   value: string;
 }
 
-const BugButton = ({
+export const BugButton = ({
   condition,
   categories,
   position,
@@ -58,7 +70,6 @@ const BugButton = ({
       temp.slice(-5);
     }
     setHistory(temp);
-    console.log(history);
   }, [currentUrl]);
 
   //data to report
@@ -92,7 +103,6 @@ const BugButton = ({
       },
     })
       .then(function (response) {
-        console.log(response);
         setLinkToIssue({
           url: response.data.html_url,
           number: response.data.number,
@@ -101,7 +111,7 @@ const BugButton = ({
         setTitle("");
       })
       .catch(function (error) {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -110,8 +120,8 @@ const BugButton = ({
       <>
         {/* button */}
         <button
-          className="bugButton"
           style={{
+            ...bugButton,
             position: "absolute",
             top: position === "top" ? 0 : undefined,
             right: position === "right" ? 0 : undefined,
@@ -147,29 +157,34 @@ const BugButton = ({
         </button>
         {/* modal */}
         <div
-          className={showModal ? "bugModal stack" : "displayNone"}
-          style={{
-            position: "absolute",
-            top: position === "top" ? 0 : undefined,
-            right: position === "right" ? 0 : undefined,
-            bottom: position === "bottom" ? 0 : undefined,
-            left:
-              position === "left"
-                ? 0
-                : ["top", "bottom"].includes(position)
-                ? "50%"
-                : undefined,
-          }}
+          style={
+            showModal
+              ? {
+                  ...bugModal,
+                  ...stack,
+                  position: "absolute",
+                  top: position === "top" ? 0 : undefined,
+                  right: position === "right" ? 0 : undefined,
+                  bottom: position === "bottom" ? 0 : undefined,
+                  left:
+                    position === "left"
+                      ? 0
+                      : ["top", "bottom"].includes(position)
+                      ? "50%"
+                      : undefined,
+                }
+              : displayNone
+          }
         >
           {/* closeButton */}
-          <div className="closeButtonBox">
-            <button className="closeButton" onClick={() => setShowModal(false)}>
+          <div style={{ ...closeButtonBox, ...stackElement }}>
+            <button style={closeButton} onClick={() => setShowModal(false)}>
               X
             </button>
           </div>
           <p>Please describe the Bug</p>
           {/* title */}
-          <div>
+          <div style={stackElement}>
             <input
               placeholder="title"
               value={title}
@@ -180,7 +195,7 @@ const BugButton = ({
             />
           </div>
           {/* reporter */}
-          <div>
+          <div style={stackElement}>
             <input
               placeholder="reporter"
               value={reporter}
@@ -192,18 +207,43 @@ const BugButton = ({
           </div>
           {/* category choice */}
           {categories && (
-            <div>
+            <div style={stackElement}>
               <p>Category:</p>
               <section id="categoryButtonGroup">
                 {categories.map((c, i) => (
                   <button
-                    className={`${
+                    key={c}
+                    style={
                       category === c
-                        ? "selectedCategoryButton"
-                        : "categoryButton"
-                    } ${i === 0 && "firstButton"} ${
-                      i === categories.length - 1 && "lastButton"
-                    } `}
+                        ? {
+                            ...selectedCategoryButton,
+                            borderTopLeftRadius: i === 0 ? "0.5rem" : undefined,
+                            borderTopRightRadius:
+                              i === categories.length - 1
+                                ? "0.5rem"
+                                : undefined,
+                            borderBottomLeftRadius:
+                              i === 0 ? "0.5rem" : undefined,
+                            borderBottomRightRadius:
+                              i === categories.length - 1
+                                ? "0.5rem"
+                                : undefined,
+                          }
+                        : {
+                            ...categoryButton,
+                            borderTopLeftRadius: i === 0 ? "0.5rem" : undefined,
+                            borderTopRightRadius:
+                              i === categories.length - 1
+                                ? "0.5rem"
+                                : undefined,
+                            borderBottomLeftRadius:
+                              i === 0 ? "0.5rem" : undefined,
+                            borderBottomRightRadius:
+                              i === categories.length - 1
+                                ? "0.5rem"
+                                : undefined,
+                          }
+                    }
                     onClick={() => setCategory(c)}
                   >
                     {c}
@@ -213,7 +253,7 @@ const BugButton = ({
             </div>
           )}
           {/* description */}
-          <div>
+          <div style={stackElement}>
             <textarea
               name="description"
               rows={10}
@@ -227,7 +267,7 @@ const BugButton = ({
             />
           </div>
           {/* link to generated issue */}
-          <p>
+          <p style={stackElement}>
             {linkToIssue && (
               <a target="_blank" href={linkToIssue.url}>
                 {`Issue ${linkToIssue.number} created successfully`}
@@ -236,8 +276,12 @@ const BugButton = ({
           </p>
           {/* submit button */}
           <button
+            style={
+              description === "" || title === "" || reporter === ""
+                ? { ...stackElement, ...reportButtonDisabled }
+                : { ...stackElement, ...reportButton }
+            }
             disabled={description === "" || title === "" || reporter === ""}
-            className="reportButton"
             onClick={handleReportClick}
           >
             Report
@@ -247,5 +291,3 @@ const BugButton = ({
     );
   } else return <></>;
 };
-
-export default BugButton;
