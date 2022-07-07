@@ -1,0 +1,74 @@
+.bugButton {
+  background: rgb(207, 63, 47);
+  padding: 0.5rem;
+  z-index: 10000;
+  border: none;
+  color: white;
+}
+
+.reportButton {
+  border: none;
+  width: 100%;
+  background: rgb(82, 165, 112);
+  color: white;
+  border-radius: 0.5rem;
+
+  padding: 0.5rem;
+}
+
+.reportButton:disabled {
+  background: lightgray;
+  color: white;
+}
+
+.closeButtonBox {
+  display: flex;
+  justify-content: flex-end;
+}
+.closeButton {
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.categoryButton {
+  background: lightgray;
+  padding: 0.5rem;
+  border: none;
+}
+.selectedCategoryButton {
+  background: rgb(207, 63, 47);
+  padding: 0.5rem;
+
+  border: none;
+  color: white;
+}
+.firstButton {
+  border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+.lastButton {
+  border-bottom-right-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.bugModal {
+  max-height: 90vh;
+  overflow: scroll;
+  cursor: pointer;
+  border: 1px solid #1a202c;
+  background: white;
+  border-radius: 0.5rem;
+  z-index: 10001;
+}
+
+.stack {
+  padding-top: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+.stack > * {
+  margin-bottom: 1rem;
+}
+.displayNone {
+  display: none;
+}

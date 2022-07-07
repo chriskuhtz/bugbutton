@@ -1,0 +1,1 @@
+{"version":3,"file":"BugButton.d.ts","sourceRoot":"","sources":["../../src/BugButton/BugButton.tsx"],"names":[],"mappings":";AAEA,OAAO,iBAAiB,CAAC;AAEzB,UAAU,SAAS;IACjB,GAAG,EAAE,MAAM,CAAC;IACZ,KAAK,EAAE,MAAM,CAAC;CACf;AAED,QAAA,MAAM,SAAS;eAQF,OAAO;SACb,MAAM;eACA,MAAM;cACP,KAAK,GAAG,OAAO,GAAG,MAAM,GAAG,QAAQ;;;MAG3C,WAiOH,CAAC;AAEF,eAAe,SAAS,CAAC"}
